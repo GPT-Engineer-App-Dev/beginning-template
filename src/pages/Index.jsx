@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-const Calculator = () => {
-  const [result, setResult] = useState(null);
+const Greeting = () => {
+  const [name, setName] = useState('');
+  const [greeting, setGreeting] = useState('');
 
-  const calculate = () => {
-    setResult(2 + 2);
+  const handleGreet = () => {
+    setGreeting(`Hello, ${name || 'there'}!`);
   };
 
   return (
     <Card className="w-[300px] mx-auto mt-10">
       <CardHeader>
-        <CardTitle>Simple Calculator</CardTitle>
+        <CardTitle>Greeting App</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <Button onClick={calculate} className="w-full">
-            Calculate 2 + 2
+          <Input 
+            type="text" 
+            placeholder="Enter your name" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Button onClick={handleGreet} className="w-full">
+            Greet
           </Button>
-          {result !== null && (
-            <p className="text-center text-2xl font-bold">
-              Result: {result}
-            </p>
+          {greeting && (
+            <p className="text-center text-xl">{greeting}</p>
           )}
         </div>
       </CardContent>
@@ -30,4 +36,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default Greeting;
