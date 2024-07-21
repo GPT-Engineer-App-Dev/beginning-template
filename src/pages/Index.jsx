@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const Calculator = () => {
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState(null);
 
-  const handleAddition = () => {
-    setResult(1 + 1);
+  const calculate = () => {
+    setResult(2 + 2);
   };
 
   return (
@@ -17,10 +16,14 @@ const Calculator = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <Input type="text" value={result} readOnly />
-          <Button onClick={handleAddition} className="w-full">
-            Calculate 1 + 1
+          <Button onClick={calculate} className="w-full">
+            Calculate 2 + 2
           </Button>
+          {result !== null && (
+            <p className="text-center text-2xl font-bold">
+              Result: {result}
+            </p>
+          )}
         </div>
       </CardContent>
     </Card>
